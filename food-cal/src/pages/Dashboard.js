@@ -14,9 +14,9 @@ function Dashboard() {
       </div>
       <div>
         <h1>Dashboard</h1>
-        <Link to="/calendar"><Button variant="contained">Calendar</Button></Link>
-        <Link to="/meal-library"><Button variant="contained">Meal Library</Button></Link>
-        <Link to="/shopping-list"><Button variant="contained">Shopping List</Button></Link>
+        <Link to="/calendar" style={{ textDecoration: 'none' }}><Button variant="contained">Calendar</Button></Link>
+        <Link to="/meal-library" style={{ textDecoration: 'none' }}><Button variant="contained">Meal Library</Button></Link>
+        <Link to="/shopping-list" style={{ textDecoration: 'none' }}><Button variant="contained">Shopping List</Button></Link>
         <CheckList />
       </div>
     </div>
