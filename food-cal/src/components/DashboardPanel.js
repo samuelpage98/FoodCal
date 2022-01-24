@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { Button } from "@mui/material"
 import DashboardCard from '../components/DashboardCard'
+import CheckListWidget from "./checkListWidget"
 
 function DashboardPanel() {
     return (
@@ -11,7 +12,7 @@ function DashboardPanel() {
             <Link to="/shopping-list"><Button variant="contained">Shopping List</Button></Link> */}
             <DashboardCard width={1530} height={200} />
             <div style={{ display: "flex" }}>
-                <DashboardCard width={500} height={500} />
+                <CheckListWidget/>
                 <DashboardCard width={500} height={500} />
                 <DashboardCard width={500} height={500} />
             </div>

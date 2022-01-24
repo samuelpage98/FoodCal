@@ -69,7 +69,7 @@ export default function CheckList() {
   const { values, handleSubmit } = formik;
 
   return (
-    <Card>
+    <Card sx={{boxShadow: 'none'}}>
       <CardHeader title="Today's Ingredients" />
       <Box sx={{ px: 3, py: 1 }}>
         <FormikProvider value={formik}>
