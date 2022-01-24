@@ -6,7 +6,7 @@ function PageLayout({ panel }) {
             <div className="navbar" style={{ width: "240px" }}>
                 <Navbar />
             </div>
-            <div style={{ margin: "20px" }}>
+            <div style={{ margin: "20px", width: "100%", display: "flexbox" }}>
                 {panel}
             </div>
         </div >
