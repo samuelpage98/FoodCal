@@ -1,13 +1,14 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
 // import Stack from '@mui/material/Stack';
 
 function Dashboard() {
   return (
     <>
-      <Button variant="contained">Calendar</Button>
-      <Button variant="contained">Meal Library</Button>
-      <Button variant="contained">Shopping List</Button>
+      <Link to="/calendar"><Button variant="contained">Calendar</Button></Link>
+      <Link to="/meal-library"><Button variant="contained">Meal Library</Button></Link>
+      <Link to="/shopping-list"><Button variant="contained">Shopping List</Button></Link>
     </>
 
   );
