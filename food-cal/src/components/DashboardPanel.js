@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { Button } from "@mui/material"
 import DashboardCard from '../components/DashboardCard'
 import CheckListWidget from "./checkListWidget"
+import MealWidget from "./mealWidget"
 
 function DashboardPanel() {
     return (
@@ -13,7 +14,7 @@ function DashboardPanel() {
             <DashboardCard width={1530} height={200} />
             <div style={{ display: "flex" }}>
                 <CheckListWidget/>
-                <DashboardCard width={500} height={500} />
+                <MealWidget/>
                 <DashboardCard width={500} height={500} />
             </div>
         </>
