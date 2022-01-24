@@ -9,7 +9,7 @@ function DashboardPanel() {
     return (
         <>
             <h1>Dashboard</h1>
-            <DashboardGreeting name="Sagar" />
+            <DashboardGreeting name="Samgar" />
             <div style={{ display: "flex" }}>
                 <CheckListWidget />
                 <DashboardCard width={500} height={500} />
