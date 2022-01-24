@@ -1,9 +1,8 @@
 
 function MealLibrary() {
-    return (
-      <h1>Hello world!</h1>
-    );
-  }
-  
-  export default MealLibrary;
-  
+  return (
+    <h1>Meal Library</h1>
+  );
+}
+
+export default MealLibrary;
