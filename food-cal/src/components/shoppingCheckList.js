@@ -70,7 +70,7 @@ export default function CheckList() {
 
   return (
     <Card sx={{boxShadow: 'none'}}>
-      <CardHeader title="Today's Ingredients" />
+      <CardHeader title="Today's Ingredients" sx={{fontFamily: 'sans-serif',fontWeight: 400,fontSize: 28, m: 1,padding: '8px',margin: 0}} />
       <Box sx={{ px: 3, py: 1 }}>
         <FormikProvider value={formik}>
           <Form autoComplete="off" noValidate onSubmit={handleSubmit}>

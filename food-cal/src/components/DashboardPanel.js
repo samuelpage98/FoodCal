@@ -3,6 +3,7 @@ import { Button } from "@mui/material"
 import DashboardCard from '../components/DashboardCard'
 import DashboardGreeting from "./DashboardGreeting"
 import CheckListWidget from "./checkListWidget"
+import MealWidget from "./mealWidget"
 
 
 function DashboardPanel() {
@@ -11,8 +12,8 @@ function DashboardPanel() {
             <h1>Dashboard</h1>
             <DashboardGreeting name="Samgar" />
             <div style={{ display: "flex" }}>
-                <CheckListWidget />
-                <DashboardCard width={500} height={500} />
+                <CheckListWidget/>
+                <MealWidget/>
                 <DashboardCard width={500} height={500} />
             </div>
         </>

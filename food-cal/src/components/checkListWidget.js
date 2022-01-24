@@ -5,7 +5,7 @@ import CheckList from "./shoppingCheckList"
 
 const CheckListWidget = () => {
     return (
-        <div className="checkListWidgetContainer" className="dashboardWidget">
+        <div className="checkListWidgetContainer dashboardWidget">
             <CheckList/>
         </div>
     )
