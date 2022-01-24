@@ -14,11 +14,11 @@ import {
 // ----------------------------------------------------------------------
 
 const TASKS = [
-  'Create FireStone Logo',
-  'Add SCSS and JS files if required',
-  'Stakeholder Meeting',
-  'Scoping & Estimations',
-  'Sprint Showcase'
+  'Chicken',
+  'Broccoli',
+  'Pasta',
+  'Spinach',
+  'Cheese'
 ];
 
 // ----------------------------------------------------------------------
@@ -59,7 +59,7 @@ function TaskItem({ task, checked, formik, ...other }) {
 export default function CheckList() {
   const formik = useFormik({
     initialValues: {
-      checked: [TASKS[2]]
+      checked: []
     },
     onSubmit: (values) => {
       console.log(values);
@@ -70,7 +70,7 @@ export default function CheckList() {
 
   return (
     <Card>
-      <CardHeader title="Tasks" />
+      <CardHeader title="Today's Ingredients" />
       <Box sx={{ px: 3, py: 1 }}>
         <FormikProvider value={formik}>
           <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
