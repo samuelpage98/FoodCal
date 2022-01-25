@@ -11,10 +11,10 @@ let author = 'Sam';
 let calories = '300'
 
 let params = {
-    TableName: 'CdkStack-TableCD117FA1-4Q0EUAS6DNQM',
+    TableName: 'CdkStack-TableCD117FA1-1E9HWY7BHP4NQ',
     Item: {
         'mealId': { S: food + author + calories },
-        'mealName' : {S: 'Jacket Potato'},
+        'mealName': { S: 'Jacket Potato' },
         'calories': { N: calories },
         'recipe': {
             'M': {
@@ -22,8 +22,8 @@ let params = {
                 'measurements': { S: '200ml' }
             },
         },
-        'imageURL': {S: 'https://images.pexels.com/photos/10435040/pexels-photo-10435040.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260'},
-        'inMyMeal': {BOOL: false}
+        'imageURL': { S: 'https://images.pexels.com/photos/10435040/pexels-photo-10435040.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' },
+        'inMyMeal': { BOOL: false }
     }
 };
 
