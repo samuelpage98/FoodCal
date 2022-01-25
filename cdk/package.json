@@ -14,6 +14,9 @@
     "jest": "^26.4.2"
   },
   "dependencies": {
+    "@aws-cdk/aws-dynamodb": "^1.140.0",
+    "@aws-cdk/aws-s3": "^1.140.0",
+    "@aws-cdk/core": "^1.140.0",
     "aws-cdk-lib": "^2.8.0",
     "constructs": "^10.0.0"
   }
