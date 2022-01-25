@@ -17,9 +17,9 @@ let params = {
         'mealName': { S: 'Jacket Potato' },
         'calories': { N: calories },
         'recipe': {
-            'M': {
-                'ingredients': { S: food },
-                'measurements': { S: '200ml' }
+            M: {
+                'ingredients': { L: [{S:"potato"}, {S:"beans"}, {S:"cheese"}] },
+                'measurements': { L: [{S:"300g"}, {S:"250g"}, {S:"100g"}] }
             },
         },
         'imageURL': { S: 'https://images.pexels.com/photos/10435040/pexels-photo-10435040.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' },
