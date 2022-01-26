@@ -108,8 +108,26 @@ const getMeal = (req, res) => {
 }
 
 const deleteMeal = (req, res) => {
+    let mealId = req.body.mealId;
 
+    let params = {
+        TableName: mealTableName,
+        Key: {
+            'mealId': { S: mealId },
+        }
+    };
+
+    ddb.deleteItem(params, function (err, data) {
+        if (err) {
+            console.log("Error", err);
+            res.status(500).send('You Fucked it Mate');
+        } else {
+            console.log("Success", data);
+            res.status(200).send('Success');
+        }
+    })
 }
+
 
 module.exports = {
     postMeal,

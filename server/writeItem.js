@@ -8,9 +8,30 @@ let ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
 const mealTableName = 'FoodCalStack-TableCD117FA1-EEMACW6TQKDG'
 
+
+// Call DynamoDB to add the item to the table
+// ddb.putItem(params, function (err, data) {
+//     if (err) {
+//         console.log("Error", err);
+//     } else {
+//         console.log("Success", data);
+//     }
+// });
+
+ddb.deleteItem({TableName: 'FoodCalStack-TableCD117FA1-EEMACW6TQKDG', Key: {'mealId' : {S : food + author + calories}}}, function (err, data) {
+    if (err) {
+        console.log("Error", err);
+        // res.status(500).send('You Fucked it Mate');
+    } else {
+        console.log("Success", data);
+        // res.status(200).send('Success');
+    }
+})
+
 // let food = 'bread';
 // let author = 'Sam';
 // let calories = '300'
+
 
 // let params = {
 //     TableName: 'FoodCalStack-TableCD117FA1-EEMACW6TQKDG',
