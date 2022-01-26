@@ -11,7 +11,7 @@ let author = 'Sam';
 let calories = '300'
 
 let params = {
-    TableName: 'CdkStack-TableCD117FA1-1E9HWY7BHP4NQ',
+    TableName: 'FoodCalStack-TableCD117FA1-EEMACW6TQKDG',
     Item: {
         'mealId': { S: food + author + calories },
         'mealName': { S: 'Jacket Potato' },
