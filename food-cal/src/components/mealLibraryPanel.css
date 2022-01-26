@@ -16,8 +16,15 @@ div.myMealsDisplay, div.mealsDisplay{
 
 div.myMealsDisplay{
     flex-grow: 1;
+    width: 25%;
 }
 
 div.mealsDisplay{
     flex-grow: 2;
+    width: 75%;
+}
+
+.mealsContainer {
+    display: flex;
+    flex-wrap: wrap;
 }

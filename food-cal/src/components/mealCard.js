@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function MealCard(props) {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 250, margin: 1 }}>
             <CardMedia
                 component="img"
                 alt="green iguana"

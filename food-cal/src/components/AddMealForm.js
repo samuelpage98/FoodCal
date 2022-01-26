@@ -81,7 +81,7 @@ const Input = styled('input')({
     display: 'none',
 });
 
-export default function BasicModal() {
+export default function AddMealForm(props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
