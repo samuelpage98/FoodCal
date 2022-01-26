@@ -1,0 +1,23 @@
+div.mealsDisplayWrapper{
+    display: flex;
+    width: 100%;
+}
+
+div.mealLibraryHeader, div.myMealsDisplay, div.mealsDisplay{
+    margin: 8px;;
+}
+
+div.myMealsDisplay, div.mealsDisplay{
+    padding: 1%;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    border-radius: 5px;
+}
+
+div.myMealsDisplay{
+    flex-grow: 1;
+}
+
+div.mealsDisplay{
+    flex-grow: 2;
+}
