@@ -9,11 +9,13 @@ import { FormControlLabel } from '@mui/material';
 import { Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+const apiURL = 'https://vsru4v9fn3.execute-api.us-east-1.amazonaws.com/';
+
 const meal = {
     mealName: "",
     calories: "",
-    ingredients: "",
-    measurements: "",
+    ingredients: [],
+    measurements: [],
     inMyMeal: true,
     imageURL: ""
 }
@@ -29,12 +31,14 @@ const handleCalories = (event) => {
 }
 
 const handleIngredients = (event) => {
-    meal.ingredients = event.target.value;
+    meal.ingredients = event.target.value.split(',')
+    meal.ingredients = meal.ingredients.map(el => el.trim())
     console.log(meal.ingredients)
 }
 
 const handleMeasurements = (event) => {
-    meal.measurements = event.target.value;
+    meal.measurements = event.target.value.split(',')
+    meal.measurements = meal.measurements.map(el => el.trim())
     console.log(meal.measurements)
 }
 
@@ -48,8 +52,18 @@ const handleImageURL = (event) => {
     console.log(meal.imageURL)
 }
 
-const handleSubmit = () => {
-    console.log(meal)
+const handleSubmit = async () => {
+    let response = await fetch(apiURL + 'meal', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(meal)
+    });
+    let data = await response.json()
+    console.log(await data)
 }
 
 const style = {
