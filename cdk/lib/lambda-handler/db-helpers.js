@@ -1,7 +1,7 @@
 // Load the AWS SDK for Node.js
 let AWS = require('aws-sdk');
 
-const recipeTableName = 'FoodCalStack-TableCD117FA1-EEMACW6TQKDG'
+const mealTableName = 'FoodCalStack-TableCD117FA1-EEMACW6TQKDG'
 
 // Set the region 
 // AWS.config.update({ region: 'us-east-1' });
@@ -18,7 +18,7 @@ const postMeal = (req, res) => {
     let measurements = req.body.measurements;
 
     let params = {
-        TableName: recipeTableName,
+        TableName: mealTableName,
         Item: {
             'mealId': { S: mealName + calories },
             'mealName': { S: mealName },
@@ -56,8 +56,26 @@ const getMeal = (req, res) => {
 }
 
 const deleteMeal = (req, res) => {
+    let mealId = req.body.mealId;
 
+    let params = {
+        TableName: mealTableName,
+        Key: {
+            'mealId': { S: mealId },
+        }
+    };
+
+    ddb.deleteItem(params, function (err, data) {
+        if (err) {
+            console.log("Error", err);
+            res.status(500).send('You Fucked it Mate');
+        } else {
+            console.log("Success", data);
+            res.status(200).send('Success');
+        }
+    })
 }
+
 
 module.exports = {
     postMeal,
