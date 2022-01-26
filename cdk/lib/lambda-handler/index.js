@@ -1,7 +1,7 @@
 const serverless = require("serverless-http")
 const express = require("express")
 // require("dotenv").config()
-const { postMeal } = require('./db-helpers')
+const { postMeal, putMeal, getMeal, deleteMeal } = require('./db-helpers')
 const app = express()
 
 const cors = require("cors")
@@ -26,7 +26,13 @@ app.get("/", (req, res) => {
     res.status(200).send("Hello World! I love dragons 🐉 and unicorns 🦄!")
 })
 
+app.get("/meal", getMeal)
+
 app.post("/meal", postMeal)
+
+app.put("/meal", putMeal)
+
+app.delete("/meal", deleteMeal)
 
 module.exports.handler = serverless(app)
 

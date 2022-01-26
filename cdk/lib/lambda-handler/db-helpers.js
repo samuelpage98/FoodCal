@@ -1,6 +1,8 @@
 // Load the AWS SDK for Node.js
 let AWS = require('aws-sdk');
 
+const recipeTableName = 'FoodCalStack-TableCD117FA1-EEMACW6TQKDG'
+
 // Set the region 
 // AWS.config.update({ region: 'us-east-1' });
 
@@ -16,7 +18,7 @@ const postMeal = (req, res) => {
     let measurements = req.body.measurements;
 
     let params = {
-        TableName: 'FoodCalStack-TableCD117FA1-EEMACW6TQKDG',
+        TableName: recipeTableName,
         Item: {
             'mealId': { S: mealName + calories },
             'mealName': { S: mealName },
@@ -24,7 +26,7 @@ const postMeal = (req, res) => {
             'recipe': {
                 'M': {
                     'ingredients': { L: ingredients },
-                    'measurements': { L:  measurements }
+                    'measurements': { L: measurements }
                 },
             },
             'imageURL': { S: imageURL },
@@ -45,6 +47,21 @@ const postMeal = (req, res) => {
 
 }
 
+const putMeal = (req, res) => {
+
+}
+
+const getMeal = (req, res) => {
+
+}
+
+const deleteMeal = (req, res) => {
+
+}
+
 module.exports = {
-    postMeal
+    postMeal,
+    putMeal,
+    getMeal,
+    deleteMeal
 }
