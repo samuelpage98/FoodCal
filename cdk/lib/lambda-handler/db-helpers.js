@@ -7,28 +7,28 @@ let AWS = require('aws-sdk');
 // Create the DynamoDB service object
 let ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
-
-
 const postMeal = (req, res) => {
-
-    let food = 'eggyshit';
-    let author = 'Sam';
-    let calories = '300'
+    let mealName = req.body.mealName;
+    let calories = req.body.calories;
+    let imageURL = req.body.imageURL;
+    let inMyMeal = req.body.inMyMeal;
+    let ingredients = req.body.ingredients;
+    let measurements = req.body.measurements;
 
     let params = {
         TableName: 'FoodCalStack-TableCD117FA1-EEMACW6TQKDG',
         Item: {
-            'mealId': { S: food + author + calories },
-            'mealName': { S: 'Jacket Potato' },
+            'mealId': { S: mealName + calories },
+            'mealName': { S: mealName },
             'calories': { N: calories },
             'recipe': {
                 'M': {
-                    'ingredients': { S: food },
-                    'measurements': { S: '200ml' }
+                    'ingredients': { L: ingredients },
+                    'measurements': { L:  measurements }
                 },
             },
-            'imageURL': { S: 'https://images.pexels.com/photos/10435040/pexels-photo-10435040.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' },
-            'inMyMeal': { BOOL: false }
+            'imageURL': { S: imageURL },
+            'inMyMeal': { BOOL: inMyMeal }
         }
     };
 
@@ -36,10 +36,10 @@ const postMeal = (req, res) => {
     ddb.putItem(params, function (err, data) {
         if (err) {
             console.log("Error", err);
-            res.status(500).send('You Fucked it Mate')
+            res.status(500).send('You Fucked it Mate');
         } else {
             console.log("Success", data);
-            res.status(200).send('Success')
+            res.status(200).send('Success');
         }
     });
 
