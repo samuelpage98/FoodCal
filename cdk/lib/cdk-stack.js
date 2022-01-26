@@ -18,14 +18,6 @@ class CdkStack extends Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
-
-    // example resource
-    const queue = new sqs.Queue(this, 'SamQueue', {
-      visibilityTimeout: Duration.seconds(300)
-    });
-
-
     // 👇 create Dynamodb table
     const table = new dynamodb.Table(this, 'Table', {
       partitionKey: { name: 'mealId', type: dynamodb.AttributeType.STRING },
