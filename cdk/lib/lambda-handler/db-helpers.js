@@ -17,6 +17,9 @@ const postMeal = (req, res) => {
     let ingredients = req.body.ingredients;
     let measurements = req.body.measurements;
 
+    ingredients = ingredients.map(el => { return { S: el } })
+    measurements = measurements.map(el => { return { S: el } })
+
     let params = {
         TableName: mealTableName,
         Item: {
@@ -55,6 +58,9 @@ const putMeal = (req, res) => {
     let inMyMeal = req.body.inMyMeal;
     let ingredients = req.body.ingredients;
     let measurements = req.body.measurements;
+
+    ingredients = ingredients.map(el => { return { S: el } })
+    measurements = measurements.map(el => { return { S: el } })
 
     let params = {
         TableName: mealTableName,
@@ -128,10 +134,25 @@ const deleteMeal = (req, res) => {
     })
 }
 
+const getMeals = (req, res) => {
+    let readParams = {
+        TableName: mealTableName,
+    };
+
+    ddb.scan(readParams, function (err, data) {
+        if (err) {
+            console.log("Error", err);
+        } else {
+            console.log("Success", data)
+            res.send(data.Items);
+        }
+    })
+}
 
 module.exports = {
     postMeal,
     putMeal,
     getMeal,
-    deleteMeal
+    deleteMeal,
+    getMeals
 }

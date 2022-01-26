@@ -1,13 +1,10 @@
 const serverless = require("serverless-http")
 const express = require("express")
 // require("dotenv").config()
-const { postMeal, putMeal, getMeal, deleteMeal } = require('./db-helpers')
+const { postMeal, putMeal, getMeal, deleteMeal, getMeals } = require('./db-helpers')
 const app = express()
 
 const cors = require("cors")
-
-
-
 
 // Have a title on the process to help us stop it - see package.json
 const process = require("process")
@@ -27,12 +24,11 @@ app.get("/", (req, res) => {
 })
 
 app.get("/meal", getMeal)
-
 app.post("/meal", postMeal)
-
 app.put("/meal", putMeal)
-
 app.delete("/meal", deleteMeal)
+
+app.get("/meals", getMeals)
 
 module.exports.handler = serverless(app)
 
