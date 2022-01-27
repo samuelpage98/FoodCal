@@ -3,7 +3,7 @@ import * as React from 'react';
 import MealCard from "./mealCard";
 import MealInstructions from "./MealInstructions";
 
-const apiURL = ' https://tpua2ywmzj.execute-api.us-east-1.amazonaws.com/';
+import apiURL from '../API_URL';
 
 function MealsCardPanel() {
     const [mealData, setMealData] = useState([]);
@@ -19,7 +19,7 @@ function MealsCardPanel() {
         });
         let data = await response.json()
         setMealData(data);
-        console.log(await data)
+        // console.log(await data)
     }, [])
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
@@ -33,7 +33,7 @@ function MealsCardPanel() {
         <>
             {mealData.map(el => {
                 if (!el.inMyMeal.BOOL) {
-                    return <MealCard index={mealData.indexOf(el)} instructionButtonHandler={instructionButtonHandler} setMealCardIndex={setMealCardIndex} imageURL={el.imageURL.S} mealName={el.mealName.S} mealDescription="This is the meal description, to be added to db later or maybe not" />
+                    return <MealCard mealData={el} inMyMeal={el.inMyMeal.BOOL} index={mealData.indexOf(el)} instructionButtonHandler={instructionButtonHandler} setMealCardIndex={setMealCardIndex} imageURL={el.imageURL.S} mealName={el.mealName.S} mealDescription="This is the meal description, to be added to db later or maybe not" />
                 }
             })}
             <MealInstructions mealCardIndex={mealCardIndex} open={open} handleClose={handleClose} mealData={mealData} />
