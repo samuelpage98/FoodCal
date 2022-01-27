@@ -3,15 +3,29 @@ import AddMealForm from './AddMealForm'
 import './mealLibraryPanel.css'
 import MealsCardPanel from "./MealsCardPanel"
 import MyMealsCardPanel from "./MyMealsCardPanel"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import apiURL from '../API_URL';
 
 function MealLibraryPanel() {
     const [refresh, setRefresh] = useState(true)
+    const [mealData, setMealData] = useState([]);
+    const [mealCardIndex, setMealCardIndex] = useState();
+
+    useEffect(async () => {
+        let response = await fetch(apiURL + 'meals', {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        });
+        let data = await response.json()
+        setMealData(data);
+    }, [refresh])
 
     const removeHandler = async (mealData) => {
-        setRefresh(!refresh)
         const updatedMealData = JSON.parse(JSON.stringify(mealData));
         updatedMealData.inMyMeal.BOOL = false;
 
@@ -24,12 +38,10 @@ function MealLibraryPanel() {
             },
             body: JSON.stringify(updatedMealData)
         });
-        let data = await response.json()
-        console.log(await data)
+        setRefresh(!refresh)
     }
 
     const addHandler = async (mealData) => {
-        setRefresh(!refresh)
         const updatedMealData = JSON.parse(JSON.stringify(mealData));
         updatedMealData.inMyMeal.BOOL = true;
 
@@ -42,8 +54,7 @@ function MealLibraryPanel() {
             },
             body: JSON.stringify(updatedMealData)
         });
-        let data = await response.json()
-        console.log(await data)
+        setRefresh(!refresh)
     }
 
     return (
@@ -55,12 +66,12 @@ function MealLibraryPanel() {
             <div className="mealsDisplayWrapper">
                 <div className="myMealsDisplay">
                     <h3>My Meals</h3>
-                    <MyMealsCardPanel removeHandler={removeHandler} addHandler={addHandler} />
+                    <MyMealsCardPanel mealData={mealData} mealCardIndex={mealCardIndex} setMealCardIndex={setMealCardIndex} removeHandler={removeHandler} addHandler={addHandler} />
                 </div>
                 <div className="mealsDisplay">
                     <h3>Meals Library</h3>
                     <div className="mealsContainer">
-                        <MealsCardPanel removeHandler={removeHandler} addHandler={addHandler} />
+                        <MealsCardPanel mealData={mealData} mealCardIndex={mealCardIndex} setMealCardIndex={setMealCardIndex} removeHandler={removeHandler} addHandler={addHandler} />
                     </div>
                 </div>
             </div>

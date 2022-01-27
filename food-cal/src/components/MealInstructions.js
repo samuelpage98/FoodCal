@@ -27,8 +27,6 @@ const Input = styled('input')({
 });
 
 export default function MealInstructions(props) {
-    console.log(props.mealData)
-    console.log(props.mealCardIndex)
 
     {
         if (props.mealData.length !== 0 && props.open) {
