@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const apiURL = ' https://tpua2ywmzj.execute-api.us-east-1.amazonaws.com/';
+import apiURL from '../API_URL';
 
 const removeHandler = async (mealData) => {
     const updatedMealData = JSON.parse(JSON.stringify(mealData));
