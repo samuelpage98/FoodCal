@@ -26,11 +26,13 @@ class CdkStack extends Stack {
     });
 
     // S3 Bucket Creation
+    /*
     const bucket = new s3.Bucket(this, 'bucket', {
       bucketName: 'food-cal-bucket',
       encryption: s3.BucketEncryption.S3_MANAGED,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
+    */
 
     //lambda creation
     const fn = new lambda.Function(this, 'ServerLambda', {
