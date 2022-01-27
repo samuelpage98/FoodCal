@@ -6,8 +6,6 @@ import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 import { Switch } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
-import { Stack } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import { Checkbox } from '@mui/material';
 import apiURL from '../API_URL'
@@ -19,7 +17,13 @@ const meal = {
     ingredients: [],
     measurements: [],
     inMyMeal: true,
-    imageURL: ""
+    imageURL: "",
+    description: "",
+    method: "",
+    isVegan: false,
+    isVegetarian: false,
+    isGlutenFree: false,
+    isPescatarian: false
 }
 
 const handleMealName = (event) => {
@@ -54,6 +58,36 @@ const handleImageURL = (event) => {
     console.log(meal.imageURL)
 }
 
+const handleMethod = (event) => {
+    meal.method = event.target.value;
+    console.log(meal.method)
+}
+
+const handleDescription = (event) => {
+    meal.description = event.target.value;
+    console.log(meal.description)
+}
+
+const handleIsVegan = (event) => {
+    meal.isVegan = event.target.checked;
+    console.log(meal.isVegan)
+}
+
+const handleIsVegetarian = (event) => {
+    meal.isVegetarian = event.target.checked;
+    console.log(meal.isVegetarian)
+}
+
+const handleIsGlutenFree = (event) => {
+    meal.isGlutenFree = event.target.checked;
+    console.log(meal.isGlutenFree)
+}
+
+const handleIsPescatarian = (event) => {
+    meal.isPescatarian = event.target.checked;
+    console.log(meal.isPescatarian)
+}
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -65,9 +99,6 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
-const Input = styled('input')({
-    display: 'none',
-});
 
 export default function AddMealForm(props) {
     const [open, setOpen] = React.useState(false);
@@ -75,7 +106,7 @@ export default function AddMealForm(props) {
     const handleClose = () => setOpen(false);
 
     const handleSubmit = async () => {
-        let response = await fetch(apiURL + 'meal', {
+        await fetch(apiURL + 'meal', {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -86,8 +117,6 @@ export default function AddMealForm(props) {
         });
         props.setRefresh(!props.refresh)
         handleClose()
-        // let data = await response.json()
-        // console.log(await data)
     }
     return (
         <div>
@@ -117,7 +146,7 @@ export default function AddMealForm(props) {
                                     <TextField id="outlined-basic" label="Calories" variant="outlined" onChange={handleCalories} />
                                     <TextField id="outlined-basic" label="Ingredients" variant="outlined" onChange={handleIngredients} />
                                     <TextField id="outlined-basic" label="Measurements" variant="outlined" onChange={handleMeasurements} />
-                                    <TextField multiline rows={4} id="outlined-basic" label="Method" variant="outlined" />
+                                    <TextField multiline rows={4} id="outlined-basic" label="Method" variant="outlined" onChange={handleMethod} />
 
                                     {/* <Stack direction="row" alignItems="center" spacing={2}>
                                         <label htmlFor="contained-button-file">
@@ -140,11 +169,11 @@ export default function AddMealForm(props) {
                                     noValidate
                                     autoComplete="off"
                                 >
-                                    <TextField multiline rows={4} id="outlined-basic" label="Description" variant="outlined" />
-                                    <FormControlLabel control={<Checkbox />} label="Vegetarian" />
-                                    <FormControlLabel control={<Checkbox />} label="Vegan" />
-                                    <FormControlLabel control={<Checkbox />} label="Gluten Free" />
-                                    <FormControlLabel control={<Checkbox />} label="Pescatarian" />
+                                    <TextField multiline rows={4} id="outlined-basic" label="Description" variant="outlined" onChange={handleDescription} />
+                                    <FormControlLabel control={<Checkbox onChange={handleIsVegetarian} />} label="Vegetarian" />
+                                    <FormControlLabel control={<Checkbox onChange={handleIsVegan} />} label="Vegan" />
+                                    <FormControlLabel control={<Checkbox onChange={handleIsGlutenFree} />} label="Gluten Free" />
+                                    <FormControlLabel control={<Checkbox onChange={handleIsPescatarian} />} label="Pescatarian" />
                                 </Box>
                             </Grid>
                         </Grid>

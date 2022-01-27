@@ -16,6 +16,13 @@ const postMeal = (req, res) => {
     let inMyMeal = req.body.inMyMeal;
     let ingredients = req.body.ingredients;
     let measurements = req.body.measurements;
+    let description = req.body.description;
+    let method = req.body.method;
+    let isVegan = req.body.isVegan;
+    let isVegetarian = req.body.isVegetarian;
+    let isGlutenFree = req.body.isGlutenFree;
+    let isPescatarian = req.body.isPescatarian;
+
 
     imageURL === "" ? imageURL = 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' : imageURL
 
@@ -35,7 +42,13 @@ const postMeal = (req, res) => {
                 },
             },
             'imageURL': { S: imageURL },
-            'inMyMeal': { BOOL: inMyMeal }
+            'inMyMeal': { BOOL: inMyMeal },
+            'method': { S: method },
+            'description': { S: description },
+            'isVegan': { BOOL: isVegan },
+            'isVegetarian': { BOOL: isVegetarian },
+            'isGlutenFree': { BOOL: isGlutenFree },
+            'isPescatarian': { BOOL: isPescatarian }
         }
     };
 
@@ -61,6 +74,13 @@ const putMeal = (req, res) => {
     let ingredients = req.body.ingredients;
     let measurements = req.body.measurements;
 
+    let description = req.body.description;
+    let method = req.body.method;
+    let isVegan = req.body.isVegan;
+    let isVegetarian = req.body.isVegetarian;
+    let isGlutenFree = req.body.isGlutenFree;
+    let isPescatarian = req.body.isPescatarian;
+
     ingredients = ingredients.map(el => { return { S: el } })
     measurements = measurements.map(el => { return { S: el } })
 
@@ -77,7 +97,14 @@ const putMeal = (req, res) => {
                 },
             },
             'imageURL': { S: imageURL },
-            'inMyMeal': { BOOL: inMyMeal }
+            'inMyMeal': { BOOL: inMyMeal },
+            'method': { S: method },
+            'description': { S: description },
+            'isVegan': { BOOL: isVegan },
+            'isVegetarian': { BOOL: isVegetarian },
+            'isGlutenFree': { BOOL: isGlutenFree },
+            'isPescatarian': { BOOL: isPescatarian }
+
         }
     };
 
