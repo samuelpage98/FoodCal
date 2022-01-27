@@ -25,7 +25,7 @@ export default function MealCard(props) {
             </CardContent>
             <CardActions>
                 <Button size="small">Add</Button>
-                <Button size="small">Instructions</Button>
+                <Button size="small" onClick={() => props.instructionButtonHandler(props.index)} >Instructions</Button>
             </CardActions>
         </Card>
     );
