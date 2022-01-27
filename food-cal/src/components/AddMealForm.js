@@ -9,7 +9,7 @@ import { FormControlLabel } from '@mui/material';
 import { Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-const apiURL = 'https://1mhs7fvq12.execute-api.us-east-1.amazonaws.com/';
+const apiURL = ' https://tpua2ywmzj.execute-api.us-east-1.amazonaws.com/';
 
 const meal = {
     mealName: "",

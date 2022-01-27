@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MealCard from "./mealCard";
 
-const apiURL = 'https://1mhs7fvq12.execute-api.us-east-1.amazonaws.com/';
+const apiURL = ' https://tpua2ywmzj.execute-api.us-east-1.amazonaws.com/';
 
 function MealsCardPanel() {
     const [mealData, setMealData] = useState([]);
