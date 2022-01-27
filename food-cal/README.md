@@ -4,4 +4,5 @@ change account number in bin
 
 change dynamo db table name in db-helpers.js
 
-change apiURL in AddMealForm.js & MealCardPanel.js & MyMealCardPanel.js
+change apiURL in API_URL.js
+

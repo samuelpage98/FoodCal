@@ -6,6 +6,46 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+import apiURL from '../API_URL';
+
+const removeHandler = async (mealData) => {
+    const updatedMealData = JSON.parse(JSON.stringify(mealData));
+    updatedMealData.inMyMeal.BOOL = false;
+
+    let response = await fetch(apiURL + 'my-meals', {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(updatedMealData)
+    });
+    let data = await response.json()
+    console.log(await data)
+
+
+
+}
+
+const addHandler = async (mealData) => {
+    const updatedMealData = JSON.parse(JSON.stringify(mealData));
+    updatedMealData.inMyMeal.BOOL = true;
+
+    let response = await fetch(apiURL + 'my-meals', {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(updatedMealData)
+    });
+    let data = await response.json()
+    console.log(await data)
+
+}
+
 export default function MealCard(props) {
     return (
         <Card sx={{ maxWidth: 250, margin: 1 }}>
@@ -24,7 +64,7 @@ export default function MealCard(props) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Add</Button>
+                {props.inMyMeal ? <Button onClick={() => removeHandler(props.mealData)} size="small">Remove</Button> : <Button onClick={() => addHandler(props.mealData)} size="small">Add</Button>}
                 <Button size="small" onClick={() => props.instructionButtonHandler(props.index)} >Instructions</Button>
             </CardActions>
         </Card>

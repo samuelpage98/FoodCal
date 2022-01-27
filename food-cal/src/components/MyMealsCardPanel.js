@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MealCard from "./mealCard";
 
-const apiURL = 'https://tpua2ywmzj.execute-api.us-east-1.amazonaws.com/';
+import apiURL from '../API_URL';
 
 function MealsCardPanel() {
     const [mealData, setMealData] = useState([]);
@@ -16,14 +16,14 @@ function MealsCardPanel() {
         });
         let data = await response.json()
         setMealData(data);
-        console.log(await data)
+        // console.log(await data)
     }, [])
 
     return (
         <>
             {mealData.map(el => {
                 if (el.inMyMeal.BOOL) {
-                    return <MealCard imageURL={el.imageURL.S} mealName={el.mealName.S} mealDescription="This is the meal description, to be added to db later or maybe not" />
+                    return <MealCard mealData={el} inMyMeal={el.inMyMeal.BOOL} imageURL={el.imageURL.S} mealName={el.mealName.S} mealDescription="This is the meal description, to be added to db later or maybe not" />
                 }
             })}
 
