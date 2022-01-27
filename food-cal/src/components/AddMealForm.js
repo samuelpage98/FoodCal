@@ -52,20 +52,6 @@ const handleImageURL = (event) => {
     console.log(meal.imageURL)
 }
 
-const handleSubmit = async () => {
-    let response = await fetch(apiURL + 'meal', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(meal)
-    });
-    let data = await response.json()
-    console.log(await data)
-}
-
 const style = {
     position: 'absolute',
     top: '50%',
@@ -86,6 +72,21 @@ export default function AddMealForm(props) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const handleSubmit = async () => {
+        let response = await fetch(apiURL + 'meal', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(meal)
+        });
+        props.setRefresh(!props.refresh)
+        handleClose()
+        // let data = await response.json()
+        // console.log(await data)
+    }
     return (
         <div>
             <Button onClick={handleOpen}>Add new meal</Button>
