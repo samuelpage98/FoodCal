@@ -149,10 +149,32 @@ const getMeals = (req, res) => {
     })
 }
 
+const putMyMeals = (req, res) => {
+
+    const mealData = req.body
+
+    let params = {
+        TableName: mealTableName,
+        Item: mealData
+    };
+
+    // Call DynamoDB to add the item to the table
+    ddb.putItem(params, function (err, data) {
+        if (err) {
+            console.log("Error", err);
+            res.status(500).send('You Fucked it Mate');
+        } else {
+            console.log("Success", data);
+            res.status(200).send('Successfully Updated inMyMeals');
+        }
+    });
+}
+
 module.exports = {
     postMeal,
     putMeal,
     getMeal,
     deleteMeal,
-    getMeals
+    getMeals,
+    putMyMeals
 }

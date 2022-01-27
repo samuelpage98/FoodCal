@@ -16,14 +16,14 @@ function MealsCardPanel() {
         });
         let data = await response.json()
         setMealData(data);
-        console.log(await data)
+        // console.log(await data)
     }, [])
 
     return (
         <>
             {mealData.map(el => {
                 if (!el.inMyMeal.BOOL) {
-                    return <MealCard inMyMeal={el.inMyMeal.BOOL} imageURL={el.imageURL.S} mealName={el.mealName.S} mealDescription="This is the meal description, to be added to db later or maybe not" />
+                    return <MealCard mealData={el} inMyMeal={el.inMyMeal.BOOL} imageURL={el.imageURL.S} mealName={el.mealName.S} mealDescription="This is the meal description, to be added to db later or maybe not" />
                 }
             })}
 
