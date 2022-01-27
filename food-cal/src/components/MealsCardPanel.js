@@ -16,7 +16,7 @@ function MealsCardPanel(props) {
         <>
             {props.mealData.map(el => {
                 if (!el.inMyMeal.BOOL) {
-                    return <MealCard deleteHandler={props.deleteHandler} removeHandler={props.removeHandler} addHandler={props.addHandler} mealData={el} inMyMeal={el.inMyMeal.BOOL} index={props.mealData.indexOf(el)} instructionButtonHandler={instructionButtonHandler} imageURL={el.imageURL.S} mealName={el.mealName.S} mealDescription="This is the meal description, to be added to db later or maybe not" />
+                    return <MealCard deleteHandler={props.deleteHandler} removeHandler={props.removeHandler} addHandler={props.addHandler} mealData={el} inMyMeal={el.inMyMeal.BOOL} index={props.mealData.indexOf(el)} instructionButtonHandler={instructionButtonHandler} imageURL={el.imageURL.S} mealName={el.mealName.S} mealDescription={el.description.S} />
                 } else {
                     return <></>
                 }
