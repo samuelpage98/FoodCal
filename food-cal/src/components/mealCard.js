@@ -28,6 +28,7 @@ export default function MealCard(props) {
             <CardActions>
                 {props.inMyMeal ? <Button onClick={() => props.removeHandler(props.mealData)} size="small">Remove</Button> : <Button onClick={() => props.addHandler(props.mealData)} size="small">Add</Button>}
                 <Button size="small" onClick={() => props.instructionButtonHandler(props.index)} >Instructions</Button>
+                <Button variant="text" onClick={() => props.deleteHandler(props.mealData)}>Delete</Button>
             </CardActions>
         </Card>
     );

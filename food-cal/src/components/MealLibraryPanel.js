@@ -57,21 +57,36 @@ function MealLibraryPanel() {
         setRefresh(!refresh)
     }
 
+
+    const deleteHandler = async (mealData) => {
+
+        let response = await fetch(apiURL + 'meal', {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ "mealId": mealData.mealId.S })
+        });
+        setRefresh(!refresh)
+    }
+
     return (
         <>
             <div className="mealLibraryHeader">
                 <h1>Meal Library</h1>
-                <AddMealForm />
+                <AddMealForm setRefresh={setRefresh} refresh={refresh} />
             </div>
             <div className="mealsDisplayWrapper">
                 <div className="myMealsDisplay">
                     <h3>My Meals</h3>
-                    <MyMealsCardPanel mealData={mealData} mealCardIndex={mealCardIndex} setMealCardIndex={setMealCardIndex} removeHandler={removeHandler} addHandler={addHandler} />
+                    <MyMealsCardPanel mealData={mealData} mealCardIndex={mealCardIndex} setMealCardIndex={setMealCardIndex} deleteHandler={deleteHandler} removeHandler={removeHandler} addHandler={addHandler} />
                 </div>
                 <div className="mealsDisplay">
                     <h3>Meals Library</h3>
                     <div className="mealsContainer">
-                        <MealsCardPanel mealData={mealData} mealCardIndex={mealCardIndex} setMealCardIndex={setMealCardIndex} removeHandler={removeHandler} addHandler={addHandler} />
+                        <MealsCardPanel mealData={mealData} mealCardIndex={mealCardIndex} setMealCardIndex={setMealCardIndex} deleteHandler={deleteHandler} removeHandler={removeHandler} addHandler={addHandler} />
                     </div>
                 </div>
             </div>
