@@ -8,8 +8,8 @@ import { Switch } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import { Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import apiURL from '../API_URL'
 
-const apiURL = ' https://tpua2ywmzj.execute-api.us-east-1.amazonaws.com/';
 
 const meal = {
     mealName: "",
