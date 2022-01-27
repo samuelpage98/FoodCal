@@ -4,6 +4,7 @@ import './mealLibraryPanel.css'
 import MealsCardPanel from "./MealsCardPanel"
 import MyMealsCardPanel from "./MyMealsCardPanel"
 import { useEffect, useState } from "react";
+import SearchBar from "./SearchBar";
 
 import apiURL from '../API_URL';
 
@@ -11,6 +12,8 @@ function MealLibraryPanel() {
     const [refresh, setRefresh] = useState(true)
     const [mealData, setMealData] = useState([]);
     const [mealCardIndex, setMealCardIndex] = useState();
+
+    const [mealDataPassedThrough, setMealDataPassedThrough] = useState([]);
 
     useEffect(async () => {
         let response = await fetch(apiURL + 'meals', {
@@ -22,8 +25,12 @@ function MealLibraryPanel() {
             },
         });
         let data = await response.json()
-        setMealData(data);
+        setMealData(data)
     }, [refresh])
+
+    useEffect(() => {
+        setMealDataPassedThrough(mealData.slice())
+    }, [mealData])
 
     const removeHandler = async (mealData) => {
         const updatedMealData = JSON.parse(JSON.stringify(mealData));
@@ -72,6 +79,14 @@ function MealLibraryPanel() {
         setRefresh(!refresh)
     }
 
+    const searchSubmitHandler = (searchText) => {
+        // take mealData and filter by search criteria
+        const searchedMealData = mealData.filter(el => el.mealName.S.toLowerCase().includes(searchText.toLowerCase()))
+        setMealDataPassedThrough(searchedMealData.slice())
+        console.log("searching...")
+    }
+
+
     return (
         <>
             <div className="mealLibraryHeader">
@@ -84,9 +99,12 @@ function MealLibraryPanel() {
                     <MyMealsCardPanel mealData={mealData} mealCardIndex={mealCardIndex} setMealCardIndex={setMealCardIndex} deleteHandler={deleteHandler} removeHandler={removeHandler} addHandler={addHandler} />
                 </div>
                 <div className="mealsDisplay">
-                    <h3>Meals Library</h3>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <h3>Meals Library</h3>
+                        <SearchBar searchSubmitHandler={searchSubmitHandler} />
+                    </div>
                     <div className="mealsContainer">
-                        <MealsCardPanel mealData={mealData} mealCardIndex={mealCardIndex} setMealCardIndex={setMealCardIndex} deleteHandler={deleteHandler} removeHandler={removeHandler} addHandler={addHandler} />
+                        <MealsCardPanel mealData={mealDataPassedThrough} mealCardIndex={mealCardIndex} setMealCardIndex={setMealCardIndex} deleteHandler={deleteHandler} removeHandler={removeHandler} addHandler={addHandler} />
                     </div>
                 </div>
             </div>
