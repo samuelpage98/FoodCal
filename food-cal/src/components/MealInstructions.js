@@ -27,13 +27,8 @@ const Input = styled('input')({
 });
 
 export default function MealInstructions(props) {
-    // const [open, setOpen] = React.useState(false);
-    // const handleOpen = () => setOpen(true);
-    // const handleClose = () => setOpen(false);
     console.log(props.mealData)
     console.log(props.mealCardIndex)
-
-
 
     {
         if (props.mealData.length !== 0 && props.open) {
@@ -48,7 +43,7 @@ export default function MealInstructions(props) {
                     >
                         <Box sx={style}>
                             <Typography id="modal-modal-title" variant="h6" component="h2">
-                                {props.mealName}
+                                {props.mealData[props.mealCardIndex].mealName.S}
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                 <Box
