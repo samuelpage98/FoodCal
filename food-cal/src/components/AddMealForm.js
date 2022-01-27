@@ -8,6 +8,8 @@ import { Switch } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import { Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { Grid } from '@mui/material';
+import { Checkbox } from '@mui/material';
 import apiURL from '../API_URL'
 
 
@@ -57,7 +59,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 1000,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -101,35 +103,59 @@ export default function AddMealForm(props) {
                         Add a new meal
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <Box
-                            component="form"
-                            sx={{
-                                '& > :not(style)': { m: 1, width: '25ch' },
-                            }}
-                            noValidate
-                            autoComplete="off"
-                        >
-                            <TextField id="outlined-basic" label="Meal Name" variant="outlined" onChange={handleMealName} />
-                            <TextField id="outlined-basic" label="Calories" variant="outlined" onChange={handleCalories} />
-                            <TextField id="outlined-basic" label="Ingredients" variant="outlined" onChange={handleIngredients} />
-                            <TextField id="outlined-basic" label="Measurements" variant="outlined" onChange={handleMeasurements} />
-                            <TextField multiline rows={4} id="outlined-basic" label="Method" variant="outlined" />
-                            <FormControlLabel control={<Switch defaultChecked onChange={handleInMyMeal} />} label="Add to My Meals" />
-                            <Stack direction="row" alignItems="center" spacing={2}>
-                                <label htmlFor="contained-button-file">
-                                    <Input accept="image/*" id="contained-button-file" multiple type="file" onChange={handleImageURL} />
-                                    <Button variant="contained" component="span">
-                                        Upload Picture
-                                    </Button>
-                                </label>
-                            </Stack>
-                            <Button onClick={handleSubmit} variant="text">Add new meal</Button>
+                        <Grid container>
+                            <Grid item xs={6}>
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& > :not(style)': { m: 1, width: '50ch' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                    <TextField id="outlined-basic" label="Meal Name" variant="outlined" onChange={handleMealName} />
+                                    <TextField id="outlined-basic" label="Calories" variant="outlined" onChange={handleCalories} />
+                                    <TextField id="outlined-basic" label="Ingredients" variant="outlined" onChange={handleIngredients} />
+                                    <TextField id="outlined-basic" label="Measurements" variant="outlined" onChange={handleMeasurements} />
+                                    <TextField multiline rows={4} id="outlined-basic" label="Method" variant="outlined" />
+
+                                    {/* <Stack direction="row" alignItems="center" spacing={2}>
+                                        <label htmlFor="contained-button-file">
+                                            <Input accept="image/*" id="contained-button-file" multiple type="file" onChange={handleImageURL} />
+                                            <Button variant="contained" >
+                                                Upload Picture
+                                            </Button>
+                                        </label>
+                                    </Stack> */}
+                                    <TextField id="outlined-basic" label="Image URL" variant="outlined" onChange={handleImageURL} />
+                                    <FormControlLabel control={<Switch defaultChecked onChange={handleInMyMeal} />} label="Add to My Meals" />
+                                </Box>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& > :not(style)': { m: 1, width: '50ch' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                    <TextField multiline rows={4} id="outlined-basic" label="Description" variant="outlined" />
+                                    <FormControlLabel control={<Checkbox />} label="Vegetarian" />
+                                    <FormControlLabel control={<Checkbox />} label="Vegan" />
+                                    <FormControlLabel control={<Checkbox />} label="Gluten Free" />
+                                    <FormControlLabel control={<Checkbox />} label="Pescatarian" />
+                                </Box>
+                            </Grid>
+                        </Grid>
+                        <div style={{ display: "flex", justifyContent: "center" }}>
+                            <Button onClick={handleSubmit} variant="contained">Add new meal</Button>
+                        </div>
 
 
-                        </Box>
                     </Typography>
                 </Box>
             </Modal>
-        </div>
+        </div >
     );
 }
