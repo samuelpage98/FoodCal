@@ -17,6 +17,8 @@ const postMeal = (req, res) => {
     let ingredients = req.body.ingredients;
     let measurements = req.body.measurements;
 
+    imageURL === "" ? imageURL = 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' : imageURL
+
     ingredients = ingredients.map(el => { return { S: el } })
     measurements = measurements.map(el => { return { S: el } })
 
