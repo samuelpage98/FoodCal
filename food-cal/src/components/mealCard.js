@@ -24,7 +24,7 @@ export default function MealCard(props) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Add</Button>
+                {props.inMyMeal ? <Button size="small">Remove</Button> : <Button size="small">Add</Button>}
                 <Button size="small">Instructions</Button>
             </CardActions>
         </Card>

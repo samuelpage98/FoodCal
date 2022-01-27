@@ -23,7 +23,7 @@ function MealsCardPanel() {
         <>
             {mealData.map(el => {
                 if (!el.inMyMeal.BOOL) {
-                    return <MealCard imageURL={el.imageURL.S} mealName={el.mealName.S} mealDescription="This is the meal description, to be added to db later or maybe not" />
+                    return <MealCard inMyMeal={el.inMyMeal.BOOL} imageURL={el.imageURL.S} mealName={el.mealName.S} mealDescription="This is the meal description, to be added to db later or maybe not" />
                 }
             })}
 
