@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Grid } from "@mui/material"
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import MealCard from '../MealCard'
 import apiURL from "../../API_URL";
+import { useEffect, useState } from "react";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -18,9 +20,12 @@ function CalendarLayout(props) {
     const calItemWidth = 1.7;
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
-    let breakfastInfo = [];
-    let lunchInfo = [];
-    let dinnerInfo = [];
+
+    const [breakfastInfo, setBreakfastInfo] = useState([]);
+    const [lunchInfo, setLunchInfo] = useState([])
+    const [dinnerInfo, setDinnerInfo] = useState([])
+
+
 
     const getMealInformation = async (mealId) => {
         let response = await fetch(apiURL + `meal?mealId=${mealId}`, {
@@ -35,27 +40,41 @@ function CalendarLayout(props) {
         return await data
     }
 
-
     //Iterate over breakfasts from props and GET meal data then push to breakfast
-    for (let breakfastMeal of props.breakfast) {
-        if (breakfastMeal !== '') {
-            breakfastInfo.push(getMealInformation(breakfastMeal))
+    useEffect(async () => {
+        console.log(props.breakfast)
+        if (props.breakfast.length > 0) {
+            for (let breakfastMeal of props.breakfast) {
+                console.log(breakfastMeal)
+                let mealInfo = await getMealInformation(breakfastMeal)
+                console.log(mealInfo)
+                setBreakfastInfo(breakfastInfo.push(mealInfo))
+            }
         }
-    }
+        console.log(breakfastInfo)
+    }, [props.breakfast])
+
+
 
     //Iterate over lunches from props and GET meal data then push to lunch
-    for (let lunchMeal of props.lunch) {
-        if (lunchMeal !== '') {
-            lunchInfo.push(getMealInformation(lunchMeal))
+    useEffect(() => {
+        for (let lunchMeal of props.lunch) {
+            if (lunchMeal !== '') {
+                lunchInfo.push(getMealInformation(lunchMeal))
+            }
         }
-    }
+    }, [props.lunch])
+
 
     //Iterate over dinners from props and GET meal data then push to dinner
-    for (let dinnerMeal of props.dinner) {
-        if (dinnerMeal !== '') {
-            dinnerInfo.push(getMealInformation(dinnerMeal))
+    useEffect(() => {
+        for (let dinnerMeal of props.dinner) {
+            if (dinnerMeal !== '') {
+                dinnerInfo.push(getMealInformation(dinnerMeal))
+            }
         }
-    }
+    }, [props.dinner])
+
 
 
     return (

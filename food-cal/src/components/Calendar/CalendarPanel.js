@@ -26,14 +26,13 @@ function CalendarPanel() {
             }
         });
         let data = await response.json()
-        setCalendarData(data)
-        console.log(await data)
+        setCalendarData(await data)
     }, [])
 
     useEffect(() => {
         if (calendarData) {
             for (let i = 0; i < 7; i++) {
-                console.log(calendarData)
+                // console.log(calendarData)
                 let dayMeals = calendarData.days.L[i].L;
                 calendarDataSorted.breakfast.push(dayMeals[0].S);
                 calendarDataSorted.lunch.push(dayMeals[1].S)
