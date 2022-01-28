@@ -56,7 +56,7 @@ function TaskItem({ task, checked, formik, ...other }) {
   );
 }
 
-export default function CheckList() {
+export default function ShoppingCheckList() {
   const formik = useFormik({
     initialValues: {
       checked: []
@@ -69,8 +69,8 @@ export default function CheckList() {
   const { values, handleSubmit } = formik;
 
   return (
-    <Card sx={{boxShadow: 'none'}}>
-      <CardHeader title="Today's Ingredients" sx={{fontFamily: 'sans-serif',fontWeight: 400,fontSize: 28, m: 1,padding: '8px',margin: 0}} />
+    <Card sx={{ boxShadow: 'none' }}>
+      <CardHeader title="Today's Ingredients" sx={{ fontFamily: 'sans-serif', fontWeight: 400, fontSize: 28, m: 1, padding: '8px', margin: 0 }} />
       <Box sx={{ px: 3, py: 1 }}>
         <FormikProvider value={formik}>
           <Form autoComplete="off" noValidate onSubmit={handleSubmit}>

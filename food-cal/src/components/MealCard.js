@@ -6,8 +6,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import apiURL from '../API_URL';
-
 export default function MealCard(props) {
     return (
         <Card sx={{ maxWidth: 250, margin: 1 }}>

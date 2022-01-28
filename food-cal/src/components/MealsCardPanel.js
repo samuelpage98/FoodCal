@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as React from 'react';
-import MealCard from "./mealCard";
+import MealCard from "./MealCard";
 import MealInstructions from "./MealInstructions";
 
 

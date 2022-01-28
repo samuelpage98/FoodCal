@@ -1,12 +1,12 @@
 import './checkListWidget.css'
 import './dashboardWidget.css'
-import CheckList from "./shoppingCheckList"
+import ShoppingCheckList from "./ShoppingCheckList"
 
 
 const CheckListWidget = () => {
     return (
         <div className="checkListWidgetContainer dashboardWidget">
-            <CheckList/>
+            <ShoppingCheckList />
         </div>
     )
 }
