@@ -2,7 +2,7 @@
 let AWS = require('aws-sdk');
 
 const mealTableName = 'FoodCalStack-MealLibraryTableC4E0AFE5-ML6P2Y7MW8DC'
-const calendarTableName = 'FoodCalStack-CalendarTable1570142F-WHFONICZQH3R'
+const calendarTableName = 'FoodCalStack-CalendarTable1570142F-WVR0ENRB1OAM'
 
 // Set the region 
 // AWS.config.update({ region: 'us-east-1' });
@@ -227,57 +227,19 @@ const postMealSchedule = (req, res) => {
         TableName: calendarTableName,
         Item: {
             'userId': { S: 'One' },
-            'monday': {
-                M: {
-                    'breakfast': { S: monB },
-                    'lunch': { S: monL },
-                    'dinner': { S: monD }
-                }
+            'days': {
+                L: [
+                    { L: [{ S: monB }, { S: monL }, { S: monD }] },
+                    { L: [{ S: tueB }, { S: tueL }, { S: tueD }] },
+                    { L: [{ S: wedB }, { S: wedL }, { S: wedD }] },
+                    { L: [{ S: thuB }, { S: thuL }, { S: thuD }] },
+                    { L: [{ S: friB }, { S: friL }, { S: friD }] },
+                    { L: [{ S: satB }, { S: satL }, { S: satD }] },
+                    { L: [{ S: sunB }, { S: sunL }, { S: sunD }] }
+                ]
             },
-            'tuesday': {
-                M: {
-                    'breakfast': { S: tueB },
-                    'lunch': { S: tueL },
-                    'dinner': { S: tueD }
-                }
-            },
-            'wednesday': {
-                M: {
-                    'breakfast': { S: wedB },
-                    'lunch': { S: wedL },
-                    'dinner': { S: wedD }
-                }
-            },
-            'thursday': {
-                M: {
-                    'breakfast': { S: thuB },
-                    'lunch': { S: thuL },
-                    'dinner': { S: thuD }
-                }
-            },
-            'friday': {
-                M: {
-                    'breakfast': { S: friB },
-                    'lunch': { S: friL },
-                    'dinner': { S: friD }
-                }
-            },
-            'saturday': {
-                M: {
-                    'breakfast': { S: satB },
-                    'lunch': { S: satL },
-                    'dinner': { S: satD }
-                }
-            },
-            'sunday': {
-                M: {
-                    'breakfast': { S: sunB },
-                    'lunch': { S: sunL },
-                    'dinner': { S: sunD }
-                }
-            },
-        }
-    };
+        },
+    }
 
     // Call DynamoDB to add the item to the table
     ddb.putItem(params, function (err, data) {
@@ -318,57 +280,19 @@ const putMealSchedule = (req, res) => {
         TableName: calendarTableName,
         Item: {
             'userId': { S: 'One' },
-            'monday': {
-                M: {
-                    'breakfast': { S: monB },
-                    'lunch': { S: monL },
-                    'dinner': { S: monD }
-                }
+            'days': {
+                L: [
+                    { L: [{ S: monB }, { S: monL }, { S: monD }] },
+                    { L: [{ S: tueB }, { S: tueL }, { S: tueD }] },
+                    { L: [{ S: wedB }, { S: wedL }, { S: wedD }] },
+                    { L: [{ S: thuB }, { S: thuL }, { S: thuD }] },
+                    { L: [{ S: friB }, { S: friL }, { S: friD }] },
+                    { L: [{ S: satB }, { S: satL }, { S: satD }] },
+                    { L: [{ S: sunB }, { S: sunL }, { S: sunD }] }
+                ]
             },
-            'tuesday': {
-                M: {
-                    'breakfast': { S: tueB },
-                    'lunch': { S: tueL },
-                    'dinner': { S: tueD }
-                }
-            },
-            'wednesday': {
-                M: {
-                    'breakfast': { S: wedB },
-                    'lunch': { S: wedL },
-                    'dinner': { S: wedD }
-                }
-            },
-            'thursday': {
-                M: {
-                    'breakfast': { S: thuB },
-                    'lunch': { S: thuL },
-                    'dinner': { S: thuD }
-                }
-            },
-            'friday': {
-                M: {
-                    'breakfast': { S: friB },
-                    'lunch': { S: friL },
-                    'dinner': { S: friD }
-                }
-            },
-            'saturday': {
-                M: {
-                    'breakfast': { S: satB },
-                    'lunch': { S: satL },
-                    'dinner': { S: satD }
-                }
-            },
-            'sunday': {
-                M: {
-                    'breakfast': { S: sunB },
-                    'lunch': { S: sunL },
-                    'dinner': { S: sunD }
-                }
-            },
-        }
-    };
+        },
+    }
 
     // Call DynamoDB to add the item to the table
     ddb.putItem(params, function (err, data) {
