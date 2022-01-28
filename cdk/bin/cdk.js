@@ -15,7 +15,7 @@ new CdkStack(app, 'FoodCalStack', {
 
   /* Uncomment the next line if you know exactly what Account and Region you
    * want to deploy the stack to. */
-  env: { account: '115177268320', region: 'us-east-1' },
+  env: { account: '320447677862', region: 'us-east-1' },
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
