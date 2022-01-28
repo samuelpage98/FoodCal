@@ -31,12 +31,14 @@ function CalendarPanel() {
     }, [])
 
     useEffect(() => {
-        console.log(calendarData)
-        for (let i = 0; i < 7; i++) {
-            let dayMeals = calendarData.days.L[i];
-            calendarDataSorted.breakfast.push(dayMeals[0].S);
-            calendarDataSorted.lunch.push(dayMeals[1].S)
-            calendarDataSorted.dinner.push(dayMeals[2].S)
+        if (calendarData) {
+            for (let i = 0; i < 7; i++) {
+                console.log(calendarData)
+                let dayMeals = calendarData.days.L[i].L;
+                calendarDataSorted.breakfast.push(dayMeals[0].S);
+                calendarDataSorted.lunch.push(dayMeals[1].S)
+                calendarDataSorted.dinner.push(dayMeals[2].S)
+            }
         }
     }, [calendarData])
 
