@@ -23,7 +23,7 @@ function CalendarLayout(props) {
     let dinner = [];
 
 
-    // ONLY FOR TESTING PURPOSES//////////////////////////////
+    //////////////// ONLY FOR TESTING PURPOSES //////////////
     let exampleMealData = {
         'mealId': { S: 'mealId' },
         'mealName': { S: 'mealName' },
@@ -47,14 +47,10 @@ function CalendarLayout(props) {
     breakfast = new Array(7).fill(exampleMealData);
     lunch = new Array(7).fill(exampleMealData)
     dinner = new Array(7).fill(exampleMealData)
-    ///////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
 
 
     //Iterate over breakfasts from props and GET meal data then push to breakfast
-
-    props.breakfast.forEach(element => {
-
-    });
 
 
     //Iterate over lunches from props and GET meal data then push to lunch
