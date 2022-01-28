@@ -1,7 +1,8 @@
 // Load the AWS SDK for Node.js
 let AWS = require('aws-sdk');
 
-const mealTableName = 'FoodCalStack-TableCD117FA1-1QI6CFECUWMEC'
+const mealTableName = 'FoodCalStack-MealLibraryTableC4E0AFE5-T1C14RL28ZN7'
+const calendarTableName = 'FoodCalStack-CalendarTable1570142F-1HKHOLBZIAJWA'
 
 // Set the region 
 // AWS.config.update({ region: 'us-east-1' });
@@ -56,7 +57,7 @@ const postMeal = (req, res) => {
     ddb.putItem(params, function (err, data) {
         if (err) {
             console.log("Error", err);
-            res.status(500).send('You Fucked it Mate');
+            res.status(500).send('Error');
         } else {
             console.log("Success", data);
             res.status(200).send('Success');
@@ -112,7 +113,7 @@ const putMeal = (req, res) => {
     ddb.putItem(params, function (err, data) {
         if (err) {
             console.log("Error", err);
-            res.status(500).send('You Fucked it Mate');
+            res.status(500).send('Error');
         } else {
             console.log("Success", data);
             res.status(200).send('Success');
@@ -155,7 +156,7 @@ const deleteMeal = (req, res) => {
     ddb.deleteItem(params, function (err, data) {
         if (err) {
             console.log("Error", err);
-            res.status(500).send('You Fucked it Mate');
+            res.status(500).send('Error');
         } else {
             console.log("Success", data);
             res.status(200).send('Success');
@@ -191,12 +192,237 @@ const putMyMeals = (req, res) => {
     ddb.putItem(params, function (err, data) {
         if (err) {
             console.log("Error", err);
-            res.status(500).send('You Fucked it Mate');
+            res.status(500).send('Error');
         } else {
             console.log("Success", data);
             res.status(200).send('Successfully Updated inMyMeals');
         }
     });
+}
+
+const postMealSchedule = (req, res) => {
+    let monB = req.body.monB
+    let monL = req.body.monL
+    let monD = req.body.monD
+    let tueB = req.body.tueB
+    let tueL = req.body.tueL
+    let tueD = req.body.tueD
+    let wedB = req.body.wedB
+    let wedL = req.body.wedL
+    let wedD = req.body.wedD
+    let thuB = req.body.thuB
+    let thuL = req.body.thuL
+    let thuD = req.body.thuD
+    let friB = req.body.friB
+    let friL = req.body.friL
+    let friD = req.body.friD
+    let satB = req.body.satB
+    let satL = req.body.satL
+    let satD = req.body.satD
+    let sunB = req.body.sunB
+    let sunL = req.body.sunL
+    let sunD = req.body.sunD
+
+    let params = {
+        TableName: calendarTableName,
+        Item: {
+            'userId': { S: 'One' },
+            'monday': {
+                M: {
+                    'breakfast': { S: monB },
+                    'lunch': { S: monL },
+                    'dinner': { S: monD }
+                }
+            },
+            'tuesday': {
+                M: {
+                    'breakfast': { S: tueB },
+                    'lunch': { S: tueL },
+                    'dinner': { S: tueD }
+                }
+            },
+            'wednesday': {
+                M: {
+                    'breakfast': { S: wedB },
+                    'lunch': { S: wedL },
+                    'dinner': { S: wedD }
+                }
+            },
+            'thursday': {
+                M: {
+                    'breakfast': { S: thuB },
+                    'lunch': { S: thuL },
+                    'dinner': { S: thuD }
+                }
+            },
+            'friday': {
+                M: {
+                    'breakfast': { S: friB },
+                    'lunch': { S: friL },
+                    'dinner': { S: friD }
+                }
+            },
+            'saturday': {
+                M: {
+                    'breakfast': { S: satB },
+                    'lunch': { S: satL },
+                    'dinner': { S: satD }
+                }
+            },
+            'sunday': {
+                M: {
+                    'breakfast': { S: sunB },
+                    'lunch': { S: sunL },
+                    'dinner': { S: sunD }
+                }
+            },
+        }
+    };
+
+    // Call DynamoDB to add the item to the table
+    ddb.putItem(params, function (err, data) {
+        if (err) {
+            console.log("Error", err);
+            res.status(500).send('Error');
+        } else {
+            console.log("Success", data);
+            res.status(200).send('Success');
+        }
+    });
+}
+
+const putMealSchedule = (req, res) => {
+    let monB = req.body.monB
+    let monL = req.body.monL
+    let monD = req.body.monD
+    let tueB = req.body.tueB
+    let tueL = req.body.tueL
+    let tueD = req.body.tueD
+    let wedB = req.body.wedB
+    let wedL = req.body.wedL
+    let wedD = req.body.wedD
+    let thuB = req.body.thuB
+    let thuL = req.body.thuL
+    let thuD = req.body.thuD
+    let friB = req.body.friB
+    let friL = req.body.friL
+    let friD = req.body.friD
+    let satB = req.body.satB
+    let satL = req.body.satL
+    let satD = req.body.satD
+    let sunB = req.body.sunB
+    let sunL = req.body.sunL
+    let sunD = req.body.sunD
+
+    let params = {
+        TableName: calendarTableName,
+        Item: {
+            'userId': { S: 'One' },
+            'monday': {
+                M: {
+                    'breakfast': { S: monB },
+                    'lunch': { S: monL },
+                    'dinner': { S: monD }
+                }
+            },
+            'tuesday': {
+                M: {
+                    'breakfast': { S: tueB },
+                    'lunch': { S: tueL },
+                    'dinner': { S: tueD }
+                }
+            },
+            'wednesday': {
+                M: {
+                    'breakfast': { S: wedB },
+                    'lunch': { S: wedL },
+                    'dinner': { S: wedD }
+                }
+            },
+            'thursday': {
+                M: {
+                    'breakfast': { S: thuB },
+                    'lunch': { S: thuL },
+                    'dinner': { S: thuD }
+                }
+            },
+            'friday': {
+                M: {
+                    'breakfast': { S: friB },
+                    'lunch': { S: friL },
+                    'dinner': { S: friD }
+                }
+            },
+            'saturday': {
+                M: {
+                    'breakfast': { S: satB },
+                    'lunch': { S: satL },
+                    'dinner': { S: satD }
+                }
+            },
+            'sunday': {
+                M: {
+                    'breakfast': { S: sunB },
+                    'lunch': { S: sunL },
+                    'dinner': { S: sunD }
+                }
+            },
+        }
+    };
+
+    // Call DynamoDB to add the item to the table
+    ddb.putItem(params, function (err, data) {
+        if (err) {
+            console.log("Error", err);
+            res.status(500).send('Error');
+        } else {
+            console.log("Success", data);
+            res.status(200).send('Success');
+        }
+    });
+}
+
+const getMealSchedule = (req, res) => {
+    let userId = req.body.userId
+
+    var params = {
+        TableName: calendarTableName,
+        Key: {
+            'userId': { S: userId }
+        }
+    };
+
+    // Call DynamoDB to read the item from the table
+    ddb.getItem(params, function (err, data) {
+        if (err) {
+            console.log("Error", err);
+            res.send("Error")
+        } else {
+            console.log("Success", data.Item);
+            res.send(data.Item)
+        }
+    });
+}
+
+const deleteMealSchedule = (req, res) => {
+    let userId = req.body.userId;
+
+    let params = {
+        TableName: calendarTableName,
+        Key: {
+            'userId': { S: userId },
+        }
+    };
+
+    ddb.deleteItem(params, function (err, data) {
+        if (err) {
+            console.log("Error", err);
+            res.status(500).send('Error');
+        } else {
+            console.log("Success", data);
+            res.status(200).send('Success');
+        }
+    })
 }
 
 module.exports = {
@@ -205,5 +431,9 @@ module.exports = {
     getMeal,
     deleteMeal,
     getMeals,
-    putMyMeals
+    putMyMeals,
+    postMealSchedule,
+    putMealSchedule,
+    getMealSchedule,
+    deleteMealSchedule
 }

@@ -19,8 +19,14 @@ class CdkStack extends Stack {
     super(scope, id, props);
 
     // 👇 create Dynamodb table
-    const table = new dynamodb.Table(this, 'Table', {
+    const mealLibraryTable = new dynamodb.Table(this, 'MealLibraryTable', {
       partitionKey: { name: 'mealId', type: dynamodb.AttributeType.STRING },
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+    });
+
+    const calendarTable = new dynamodb.Table(this, 'CalendarTable', {
+      partitionKey: { name: 'userID', type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
@@ -49,7 +55,8 @@ class CdkStack extends Stack {
       integration: new integrations.HttpLambdaIntegration("FoodCalIntegration", fn)
     });
 
-    table.grantFullAccess(fn)
+    mealLibraryTable.grantFullAccess(fn)
+    calendarTable.grantFullAccess(fn)
 
   }
 }
