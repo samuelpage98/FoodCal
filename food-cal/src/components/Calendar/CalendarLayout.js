@@ -2,6 +2,7 @@ import { Grid } from "@mui/material"
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import MealCard from '../MealCard'
+import apiURL from "../../API_URL";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -14,48 +15,47 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function CalendarLayout(props) {
 
-
     const calItemWidth = 1.7;
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
-    let breakfast = [];
-    let lunch = [];
-    let dinner = [];
+    let breakfastInfo = [];
+    let lunchInfo = [];
+    let dinnerInfo = [];
 
-
-    //////////////// ONLY FOR TESTING PURPOSES //////////////
-    let exampleMealData = {
-        'mealId': { S: 'mealId' },
-        'mealName': { S: 'mealName' },
-        'calories': { N: '300' },
-        'recipe': {
-            'M': {
-                'ingredients': { L: [{ S: 'egg' }, { S: 'rice' }] },
-                'measurements': { L: [{ S: '1' }, { S: '200g' }] }
-            },
-        },
-        'imageURL': { S: 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' },
-        'inMyMeal': { BOOL: false },
-        'method': { S: 'method' },
-        'description': { S: 'description' },
-        'isVegan': { BOOL: true },
-        'isVegetarian': { BOOL: true },
-        'isGlutenFree': { BOOL: true },
-        'isPescatarian': { BOOL: false }
-
+    const getMealInformation = async (mealId) => {
+        let response = await fetch(apiURL + `meal?mealId=${mealId}`, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        let data = await response.json()
+        return await data
     }
-    breakfast = new Array(7).fill(exampleMealData);
-    lunch = new Array(7).fill(exampleMealData)
-    dinner = new Array(7).fill(exampleMealData)
-    //////////////////////////////////////////////////////////
 
 
     //Iterate over breakfasts from props and GET meal data then push to breakfast
-
+    for (let breakfastMeal of props.breakfast) {
+        if (breakfastMeal !== '') {
+            breakfastInfo.push(getMealInformation(breakfastMeal))
+        }
+    }
 
     //Iterate over lunches from props and GET meal data then push to lunch
+    for (let lunchMeal of props.lunch) {
+        if (lunchMeal !== '') {
+            lunchInfo.push(getMealInformation(lunchMeal))
+        }
+    }
 
     //Iterate over dinners from props and GET meal data then push to dinner
+    for (let dinnerMeal of props.dinner) {
+        if (dinnerMeal !== '') {
+            dinnerInfo.push(getMealInformation(dinnerMeal))
+        }
+    }
 
 
     return (
@@ -70,7 +70,7 @@ function CalendarLayout(props) {
                 })}
             </Grid>
             <Grid container spacing={2}>
-                {breakfast.map(el => {
+                {breakfastInfo.map(el => {
                     return (
                         <Grid item xs={calItemWidth}>
                             <MealCard mealName={el.mealName.S} imageURL={el.imageURL.S} mealDescription={el.description.S} noControls={true} />
@@ -79,7 +79,7 @@ function CalendarLayout(props) {
                 })}
             </Grid>
             <Grid container spacing={2}>
-                {lunch.map(el => {
+                {lunchInfo.map(el => {
                     return (
                         <Grid item xs={calItemWidth}>
                             <MealCard mealName={el.mealName.S} imageURL={el.imageURL.S} mealDescription={el.description.S} noControls={true} />
@@ -88,7 +88,7 @@ function CalendarLayout(props) {
                 })}
             </Grid>
             <Grid container spacing={2}>
-                {dinner.map(el => {
+                {dinnerInfo.map(el => {
                     return (
                         <Grid item xs={calItemWidth}>
                             <MealCard mealName={el.mealName.S} imageURL={el.imageURL.S} mealDescription={el.description.S} noControls={true} />

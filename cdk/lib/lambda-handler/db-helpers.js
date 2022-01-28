@@ -122,7 +122,7 @@ const putMeal = (req, res) => {
 }
 
 const getMeal = (req, res) => {
-    let mealId = req.body.mealId
+    let mealId = req.query.mealId
 
     var params = {
         TableName: mealTableName,
@@ -307,7 +307,7 @@ const putMealSchedule = (req, res) => {
 }
 
 const getMealSchedule = (req, res) => {
-    let userId = req.body.userId
+    let userId = req.query.userId
 
     var params = {
         TableName: calendarTableName,
