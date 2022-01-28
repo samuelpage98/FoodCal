@@ -26,7 +26,7 @@ class CdkStack extends Stack {
     });
 
     const calendarTable = new dynamodb.Table(this, 'CalendarTable', {
-      partitionKey: { name: 'userID', type: dynamodb.AttributeType.STRING },
+      partitionKey: { name: 'userId', type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
