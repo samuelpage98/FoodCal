@@ -24,9 +24,12 @@ export default function MealCard(props) {
                 </Typography>
             </CardContent>
             <CardActions>
-                {props.inMyMeal ? <Button onClick={() => props.removeHandler(props.mealData)} size="small">Remove</Button> : <Button onClick={() => props.addHandler(props.mealData)} size="small">Add</Button>}
+                {
+                    !props.noControls ? props.inMyMeal ? <Button onClick={() => props.removeHandler(props.mealData)} size="small">Remove</Button> : <Button onClick={() => props.addHandler(props.mealData)} size="small">Add</Button>
+                        : <></>
+                }
                 <Button size="small" onClick={() => props.instructionButtonHandler(props.index)} >Instructions</Button>
-                <Button variant="text" onClick={() => props.deleteHandler(props.mealData)}>Delete</Button>
+                {!props.noControls ? <Button variant="text" onClick={() => props.deleteHandler(props.mealData)}>Delete</Button> : <></>}
             </CardActions>
         </Card>
     );
