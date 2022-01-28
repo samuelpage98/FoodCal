@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PageLayout from '../layouts/PageLayout';
-import DashboardPanel from '../components/DashboardPanel';
+import DashboardPanel from '../components/Dashboard/DashboardPanel';
 
 function Dashboard() {
   return (

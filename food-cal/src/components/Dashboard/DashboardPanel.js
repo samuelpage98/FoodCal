@@ -1,4 +1,4 @@
-import DashboardCard from '../components/DashboardCard'
+import DashboardCard from './DashboardCard'
 import DashboardGreeting from "./DashboardGreeting"
 import CheckListWidget from "./CheckListWidget"
 import MealWidget from "./MealWidget"

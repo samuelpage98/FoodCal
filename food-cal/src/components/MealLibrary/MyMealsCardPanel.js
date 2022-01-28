@@ -1,6 +1,6 @@
 import { useState } from "react";
-import MealCard from "./MealCard";
-import MealInstructions from "./MealInstructions";
+import MealCard from "../MealCard";
+import MealInstructions from "../MealInstructions";
 
 
 function MealsCardPanel(props) {

@@ -1,5 +1,5 @@
 import PageLayout from '../layouts/PageLayout';
-import CalendarPanel from '../components/CalendarPanel';
+import CalendarPanel from '../components/Calendar/CalendarPanel';
 
 function Calendar() {
   return (

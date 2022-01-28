@@ -1,4 +1,4 @@
-import { Button } from "@mui/material"
+/* eslint-disable react-hooks/exhaustive-deps */
 import AddMealForm from './AddMealForm'
 import './mealLibraryPanel.css'
 import MealsCardPanel from "./MealsCardPanel"
@@ -6,7 +6,7 @@ import MyMealsCardPanel from "./MyMealsCardPanel"
 import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 
-import apiURL from '../API_URL';
+import apiURL from '../../API_URL';
 
 function MealLibraryPanel() {
     const [refresh, setRefresh] = useState(true)
@@ -36,7 +36,7 @@ function MealLibraryPanel() {
         const updatedMealData = JSON.parse(JSON.stringify(mealData));
         updatedMealData.inMyMeal.BOOL = false;
 
-        let response = await fetch(apiURL + 'my-meals', {
+        await fetch(apiURL + 'my-meals', {
             method: 'PUT',
             mode: 'cors',
             headers: {
@@ -52,7 +52,7 @@ function MealLibraryPanel() {
         const updatedMealData = JSON.parse(JSON.stringify(mealData));
         updatedMealData.inMyMeal.BOOL = true;
 
-        let response = await fetch(apiURL + 'my-meals', {
+        await fetch(apiURL + 'my-meals', {
             method: 'PUT',
             mode: 'cors',
             headers: {
@@ -67,7 +67,7 @@ function MealLibraryPanel() {
 
     const deleteHandler = async (mealData) => {
 
-        let response = await fetch(apiURL + 'meal', {
+        await fetch(apiURL + 'meal', {
             method: 'DELETE',
             mode: 'cors',
             headers: {

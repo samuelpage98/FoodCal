@@ -1,5 +1,5 @@
 import PageLayout from '../layouts/PageLayout';
-import MealLibraryPanel from '../components/MealLibraryPanel';
+import MealLibraryPanel from '../components/MealLibrary/MealLibraryPanel';
 
 function MealLibrary() {
   return (

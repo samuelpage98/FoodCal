@@ -8,7 +8,7 @@ import { Switch } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
 import { Grid } from '@mui/material';
 import { Checkbox } from '@mui/material';
-import apiURL from '../API_URL'
+import apiURL from '../../API_URL'
 
 
 const meal = {

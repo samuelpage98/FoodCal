@@ -1,5 +1,5 @@
 import PageLayout from '../layouts/PageLayout';
-import ShoppingListPanel from '../components/ShoppingListPanel';
+import ShoppingListPanel from '../components/ShoppingList/ShoppingListPanel';
 
 function ShoppingList() {
   return (
