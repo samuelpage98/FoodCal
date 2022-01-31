@@ -6,12 +6,6 @@ import apiURL from "../../API_URL";
 
 function CalendarPanel() {
 
-    const calendarDataSorted = {
-        breakfast: [],
-        lunch: [],
-        dinner: []
-    }
-
     const [calendarData, setCalendarData] = useState()
     const [sortedBreakfast, setSortedBreakfast] = useState([]);
     const [sortedLunch, setSortedLunch] = useState([]);
