@@ -13,6 +13,9 @@ function CalendarPanel() {
     }
 
     const [calendarData, setCalendarData] = useState()
+    const [sortedBreakfast, setSortedBreakfast] = useState([]);
+    const [sortedLunch, setSortedLunch] = useState([]);
+    const [sortedDinner, setSortedDinner] = useState([]);
 
     //GET MEALS FOR CALENDAR INFORMATION
 
@@ -31,21 +34,26 @@ function CalendarPanel() {
 
     useEffect(() => {
         if (calendarData) {
+            let breakfastArray = [];
+            let lunchArray = [];
+            let dinnerArray = [];
             for (let i = 0; i < 7; i++) {
-                // console.log(calendarData)
                 let dayMeals = calendarData.days.L[i].L;
-                calendarDataSorted.breakfast.push(dayMeals[0].S);
-                calendarDataSorted.lunch.push(dayMeals[1].S)
-                calendarDataSorted.dinner.push(dayMeals[2].S)
+                breakfastArray.push(dayMeals[0].S);
+                lunchArray.push(dayMeals[1].S)
+                dinnerArray.push(dayMeals[2].S)
+
             }
+            setSortedBreakfast(breakfastArray);
+            setSortedLunch(lunchArray);
+            setSortedDinner(dinnerArray);
         }
     }, [calendarData])
-
 
     return (
         <>
             <h1>Calendar</h1>
-            <CalendarLayout breakfast={calendarDataSorted.breakfast} lunch={calendarDataSorted.lunch} dinner={calendarDataSorted.dinner} />
+            <CalendarLayout breakfast={sortedBreakfast} lunch={sortedLunch} dinner={sortedDinner} />
         </>
     )
 }

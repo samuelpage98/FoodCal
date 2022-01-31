@@ -1,8 +1,8 @@
 // Load the AWS SDK for Node.js
 let AWS = require('aws-sdk');
 
-const mealTableName = 'FoodCalStack-MealLibraryTableC4E0AFE5-ML6P2Y7MW8DC'
-const calendarTableName = 'FoodCalStack-CalendarTable1570142F-WVR0ENRB1OAM'
+const mealTableName = 'FoodCalStack-MealLibraryTableC4E0AFE5-9QQQFQXQFXFV'
+const calendarTableName = 'FoodCalStack-CalendarTable1570142F-4QC0PNVL4QYP'
 
 // Set the region 
 // AWS.config.update({ region: 'us-east-1' });

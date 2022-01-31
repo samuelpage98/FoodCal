@@ -42,38 +42,38 @@ function CalendarLayout(props) {
 
     //Iterate over breakfasts from props and GET meal data then push to breakfast
     useEffect(async () => {
-        console.log(props.breakfast)
         if (props.breakfast.length > 0) {
+            console.log(props.breakfast)
+            let breakfastArray = []
             for (let breakfastMeal of props.breakfast) {
-                console.log(breakfastMeal)
                 let mealInfo = await getMealInformation(breakfastMeal)
-                console.log(mealInfo)
-                setBreakfastInfo(breakfastInfo.push(mealInfo))
+                breakfastArray.push(await mealInfo)
             }
+            setBreakfastInfo(breakfastArray)
+
         }
-        console.log(breakfastInfo)
     }, [props.breakfast])
 
 
 
-    //Iterate over lunches from props and GET meal data then push to lunch
-    useEffect(() => {
-        for (let lunchMeal of props.lunch) {
-            if (lunchMeal !== '') {
-                lunchInfo.push(getMealInformation(lunchMeal))
-            }
-        }
-    }, [props.lunch])
+    // //Iterate over lunches from props and GET meal data then push to lunch
+    // useEffect(() => {
+    //     for (let lunchMeal of props.lunch) {
+    //         if (lunchMeal !== '') {
+    //             lunchInfo.push(getMealInformation(lunchMeal))
+    //         }
+    //     }
+    // }, [props.lunch])
 
 
-    //Iterate over dinners from props and GET meal data then push to dinner
-    useEffect(() => {
-        for (let dinnerMeal of props.dinner) {
-            if (dinnerMeal !== '') {
-                dinnerInfo.push(getMealInformation(dinnerMeal))
-            }
-        }
-    }, [props.dinner])
+    // //Iterate over dinners from props and GET meal data then push to dinner
+    // useEffect(() => {
+    //     for (let dinnerMeal of props.dinner) {
+    //         if (dinnerMeal !== '') {
+    //             dinnerInfo.push(getMealInformation(dinnerMeal))
+    //         }
+    //     }
+    // }, [props.dinner])
 
 
 
@@ -97,7 +97,7 @@ function CalendarLayout(props) {
                     )
                 })}
             </Grid>
-            <Grid container spacing={2}>
+            {/* <Grid container spacing={2}>
                 {lunchInfo.map(el => {
                     return (
                         <Grid item xs={calItemWidth}>
@@ -114,7 +114,7 @@ function CalendarLayout(props) {
                         </Grid>
                     )
                 })}
-            </Grid>
+            </Grid> */}
         </>
     )
 }
