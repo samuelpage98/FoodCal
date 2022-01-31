@@ -57,23 +57,33 @@ function CalendarLayout(props) {
 
 
     // //Iterate over lunches from props and GET meal data then push to lunch
-    // useEffect(() => {
-    //     for (let lunchMeal of props.lunch) {
-    //         if (lunchMeal !== '') {
-    //             lunchInfo.push(getMealInformation(lunchMeal))
-    //         }
-    //     }
-    // }, [props.lunch])
+    useEffect(async () => {
+        if (props.lunch.length > 0) {
+            console.log(props.lunch)
+            let lunchArray = []
+            for (let lunchMeal of props.lunch) {
+                let mealInfo = await getMealInformation(lunchMeal)
+                lunchArray.push(await mealInfo)
+            }
+            setLunchInfo(lunchArray)
+
+        }
+    }, [props.lunch])
 
 
     // //Iterate over dinners from props and GET meal data then push to dinner
-    // useEffect(() => {
-    //     for (let dinnerMeal of props.dinner) {
-    //         if (dinnerMeal !== '') {
-    //             dinnerInfo.push(getMealInformation(dinnerMeal))
-    //         }
-    //     }
-    // }, [props.dinner])
+    useEffect(async () => {
+        if (props.dinner.length > 0) {
+            console.log(props.dinner)
+            let dinnerArray = []
+            for (let dinnerMeal of props.dinner) {
+                let mealInfo = await getMealInformation(dinnerMeal)
+                dinnerArray.push(await mealInfo)
+            }
+            setDinnerInfo(dinnerArray)
+
+        }
+    }, [props.dinner])
 
 
 
@@ -97,7 +107,7 @@ function CalendarLayout(props) {
                     )
                 })}
             </Grid>
-            {/* <Grid container spacing={2}>
+            <Grid container spacing={2}>
                 {lunchInfo.map(el => {
                     return (
                         <Grid item xs={calItemWidth}>
@@ -114,7 +124,7 @@ function CalendarLayout(props) {
                         </Grid>
                     )
                 })}
-            </Grid> */}
+            </Grid>
         </>
     )
 }
